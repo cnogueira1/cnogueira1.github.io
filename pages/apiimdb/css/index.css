@@ -1,0 +1,277 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {   
+    color: #fff;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: #F4F4F4;
+}
+
+
+/* MENU DO SITE */
+
+#menu li,
+ol {
+    list-style: none;
+}
+
+#menu a {
+    position: relative;
+    text-decoration: none;
+    color: #fcfcfc;
+}
+
+#menu a i {
+    color: #fcfcfc;
+    margin-right: 10px;
+}
+
+#menu {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#menu ul {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+    float: right;
+    justify-content: center;
+}
+
+#menu .logo-naruto {
+    padding-top: 10px;
+}
+
+#menu img {
+    width: 120px;
+    height: 100px;
+    border-radius: 100%;
+    border: solid 5px #fcfcfc;
+}
+
+#menu ul li ul {
+    position: absolute;
+    left: -162px;
+    top: 25px;
+    display: none;
+}
+
+#menu ul li a {
+    display: block;
+    padding-top: 5px;
+}
+
+#menu ul li {
+    font-size: 1.6rem;
+    -webkit-box-sizing: initial;
+    position: relative;
+    float: left;
+    width: 160px;
+    height: 30px;
+    border-radius: 140px;
+    border: solid 3px #fcfcfc;
+    background-color: #0b0d0e;
+    margin: 4px;
+}
+
+#menu li:hover ul {
+    z-index: 1000;
+    display: block;
+}
+
+#menu ul ul li {
+    margin-left: 150px;
+}
+
+
+/* SLIDER DE ANIME  */
+#slider-anime {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#app {
+    width: 1272px;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    border: ridge 10px #fcfcfc;
+    border-radius: 20px;
+}
+
+#app div img {
+    border-left: solid 10px #000;
+    width: 100%;
+    height: 100%;
+}
+
+#app div {
+    overflow: hidden;
+    width: 455px;
+    height: 250px;
+    position: absolute;
+    background-size: 100% 100%;
+}
+
+#app div .exb {
+    display: none;
+    background-color: #0009;
+    text-align: center;
+    padding-top: 50px;
+    color: #f5f5f5;
+}
+
+
+/* CORPO DA PAGINA */
+
+#root {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#root input,
+#inputState,
+option {
+    background-color: #0b0d0e;
+    color: #fcfcfc;
+    border: solid 3px #fcfcfc;
+    border-radius: 20px;
+}
+
+#root .conjunto {
+    width: 1272px;
+    position: relative;
+}
+
+/* OPCAO DE FILMES LATERAL */
+
+#filmes ul,
+#filmes ol {
+    list-style: none;
+}
+
+#filmes a:hover {
+    text-decoration: none;
+    color: #fcfcfc;
+}
+
+#filmes a {
+    display: block;
+    font-size: 1.7rem;
+    border: solid 2px #fcfcfc;
+    border-radius: 30px;
+    padding: 2px;
+    color: #fff;
+    width: 150px;
+}
+
+#filmes {
+    width: 30%;
+    text-align: center;
+    float: right;
+}
+
+#filmes li {
+    display: flex;
+    justify-content: center;
+    margin: 4px 0px;
+}
+
+#filmes ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+/* EXIBICAO DOS FILMES */
+
+#pecas {
+    position: relative;
+    width: 100%;
+    float: left;
+    height: auto;
+    padding-left: 30px;
+}
+
+label[for="search"] {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+#search {
+    font-size: 1.5rem;
+    padding-left: 20px;
+    margin-top: 10px;
+    height: 40px;
+    width: 50%;
+}
+
+button {
+    color: #fcfcfc;
+    width: 120px;
+    height: 40px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 20px;
+    background-color: #0b0d0e;
+    text-transform: uppercase;
+    border-color: #fcfcfc;    
+}
+
+#collection {
+    display: flex;
+    width: 100%;
+    padding-top: 15px;
+    flex-wrap: wrap;
+}
+
+#collection div {
+    margin: 5px 10px;
+    padding: 2px;
+}
+
+#collection h3 {
+    padding: 5px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imgCc {    
+    border: solid 2px #fcfcfc;
+    border-radius: 15px;
+    height: 150px;
+    width: 100px;
+}
+
+.tituloF {
+    font-size: 1.9rem;
+}
+
+textarea:focus, input:focus, select:focus, button:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+} 

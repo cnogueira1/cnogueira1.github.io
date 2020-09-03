@@ -1,0 +1,117 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@font-face{
+  font-family: FiraCode;
+  src: url(../../fonts/fira-code/FiraCode-Light.ttf);
+}
+
+@font-face{
+  font-family: AutoGraphy;
+  src: url(../../fonts/autography/Autography.otf);
+}
+
+@font-face{
+  font-family: vegan;
+  src: url(../../fonts/vegan/Vegan\ Style\ Personal\ Use.ttf);
+}
+
+@font-face{
+  font-family: AlineSignature;
+  src: url(../../fonts/alineSignature/Aline\ Signature\ Woff.otf);
+}
+
+::-webkit-scrollbar{
+  width: 0;
+}
+
+body{
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  background-size: cover;
+  background-color: #0093E9;
+  background: linear-gradient(to right, rgb(3, 0, 30), rgb(115, 3, 192),/* rgb(236, 56, 188),*/ rgb(115, 3, 192),rgb(3, 0, 30));
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgb(3, 0, 30), rgb(115, 3, 192),rgb(3, 0, 30));
+
+}
+
+nav{
+  position: fixed;
+  width: 49px;
+  height: 100%;
+  background: url("../../assets/img/retangulo1.png");
+  background-size: cover;
+  padding-left: 6px;
+  padding-top: 20px;
+  z-index: 1001;
+  border-right: solid 2px rgba(255,255,255,0.7);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+nav ul li{
+  margin-top: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+}
+
+.icon-home{  
+  width: 34.6px;
+}
+
+.icon-ntw{
+  width: 34px;
+}
+
+.icon-fnx{
+  width: 34.95px;
+}
+
+.icon-cod{
+  width: 34.28px; 
+}
+
+.icon-cod{
+  width: 34.48px;
+}
+
+.icon-play{
+  width: 34px;
+}
+
+.icon-film{
+  width: 34px;
+}
+
+/* CORPO DA PAGINA  */
+
+#content{
+  position: absolute;
+  display: flex;
+  left: 60px;
+  right: 3%;
+  min-width: 95%;
+  max-height: 100%;
+  min-height: 100%;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255,1);
+  /* align-items: center; */
+  justify-content: center;
+  padding: 50px 30px 30px 0px;
+}
+
+textarea:focus, input:focus, select:focus, button:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+} 
