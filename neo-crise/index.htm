@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chamados NEO</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="js/vue.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./img/icon-page.png" type="image/x-icon">
+</head>
+
+<body>
+  <div id="app">
+    <div id="opcoes">
+      <nav>
+        <ul>
+          <li>
+            <button class='btn btn-danger btn-lg opcao' @click='mostraCrise'>CRISE</button>
+          </li>
+          <li>
+            <button class='btn btn-success btn-lg opcao' @click='mostraNormal'>BASICO</button>
+          </li>
+          <li>
+            <button class='btn btn-success btn-lg opcao' @click='mostraRamal'>RAMAL</button>
+          </li>
+          <li>
+            <button class='btn btn-success btn-lg opcao' @click='mostraWittel'>WITTEL/WFM</button>
+          </li>
+          <li>
+            <button class='btn btn-success  btn-lg opcao' @click='mostraSDK'>NEOSERVICE</button>
+          </li>
+          <li>
+            <button class='btn btn-success  btn-lg opcao' @click='mostraMarsh'>MARSH</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div id='central'>
+      <div style='display: none;' id="containerSDK">
+        <div class="writeText">
+          <form action="">
+            <div class="form-group col-md-12">
+              <label for="name" class="col-md-4">Nome: </label>
+              <input autocomplete="off" id='name' type='text' class="col-md-7" v-model="sdk.name">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="matricula" class="col-md-4">Matricula: </label>
+              <input autocomplete="off" id='matricula' type='text' class="col-md-7" v-model="sdk.matricula">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contato" class="col-md-4">Contato: </label>
+              <input autocomplete="off" id='contato' type='text' class="col-md-7" v-model="sdk.contato">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contato" class="col-md-4">IP: </label>
+              <input autocomplete="off" id='contato' type='text' class="col-md-7" v-model="sdk.ip">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="operacao" class="col-md-4">Operação: </label>
+              <input autocomplete="off" id='operacao' type='text' class="col-md-7" v-model="sdk.operacao">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="email" class="col-md-4">Email: </label>
+              <input autocomplete="off" id='email' type='text' class="col-md-7" v-model="sdk.email">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="cargo" class="col-md-4">Cargo: </label>
+              <input autocomplete="off" id='cargo' type='text' class="col-md-7" v-model="sdk.cargo">
+            </div>
+            <div class="form-group shadow-textarea col-md-12">
+              <label for="exampleFormControlTextarea6" class="col-md-6">Descrição: </label>
+              <textarea class="form-control z-depth-1 col-md-11" v-model="sdk.descricao"
+                id="exampleFormControlTextarea6" rows="3">
+          </textarea>
+            </div>
+          </form>
+          <div id="result">
+            <div style="text-align: center;">
+              <br>CRIAÇÃO DE ACESSO NEO SERVICE<br><br>
+            </div>
+            <div>
+              Nome: {{ sdk.name }}
+            </div>
+            <div>
+              Matricula: {{ sdk.matricula }}
+            </div>
+            <div>
+              Contato: {{ sdk.contato }}
+            </div>
+            <div>
+              IP: {{ sdk.ip }}
+            </div>
+            <div>
+              Operacao: {{ sdk.operacao }}
+            </div>
+            <div>
+              Email: {{ sdk.email }}
+            </div>
+            <div>
+              Cargo: {{ sdk.cargo }}
+            </div>
+            <div>
+              Descrição: {{ sdk.descricao }}
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class='btn btn-success  btn-lg opcao' @click='clearSDK'>REINICIA ACESSO</button>
+        </div>
+      </div>
+      <div style='display: none;' id="containerMARSH">
+        <div class="writeText">
+          <form action="">
+            <div class="form-group col-md-12">
+              <label for="name" class="col-md-4">Nome: </label>
+              <input autocomplete="off" id='name' type='text' class="col-md-7" v-model="marsh.name">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="matriculaNeo" class="col-md-4">Matricula NEO: </label>
+              <input autocomplete="off" id='matriculaNeo' type='text' class="col-md-7" v-model="marsh.neo">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="matriculaMarsh" class="col-md-4">Matricula Marsh: </label>
+              <input autocomplete="off" id='matriculaMarsh' type='text' class="col-md-7" v-model="marsh.marsh">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="cargo" class="col-md-4">Cargo: </label>
+              <input autocomplete="off" id='cargo' type='text' class="col-md-7" v-model="marsh.cargo">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contato" class="col-md-4">Contato: </label>
+              <input autocomplete="off" id='contato' type='text' class="col-md-7" v-model="marsh.contato">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="email" class="col-md-4">Email: </label>
+              <input autocomplete="off" id='email' type='text' class="col-md-7" v-model="marsh.email">
+            </div>
+            <div class="form-group shadow-textarea col-md-12">
+              <label for="exampleFormControlTextarea6" class="col-md-6">Descrição: </label>
+              <textarea class="form-control z-depth-1 col-md-11" v-model="marsh.descricao"
+                id="exampleFormControlTextarea6" rows="3">
+          </textarea>
+            </div>
+          </form>
+          <div id="result">
+            <div style="font-size:0.8rem;text-align: center;">
+              Informar para o solicitante que aguarde em linha!
+              <br>Ligar Para:
+              <br><br>00551135327777 - Service Desk
+              <br>008007220396 - Service Desk Marsh
+              <br><br>Informar para o Analista do SDK Marsh o caso e colocar em conferencia
+              <br>Durante a validação do SDK Marsh ja abre chamado no neoservice para registro
+              <br>Apos isso solicitar o chamado marsh e colocar em notas
+              <br>
+            </div>
+            <div>
+              Nome: {{ marsh.name }}
+            </div>
+            <div>
+              Matricula NEO: {{ marsh.neo }}
+            </div>
+            <div>
+              Matricula Marsh: {{ marsh.marsh }}
+            </div>
+            <div>
+              Cargo: {{ marsh.cargo }}
+            </div>
+            <div>
+              Operacao: Marsh
+            </div>
+            <div>
+              Contato: {{ marsh.contato }}
+            </div>
+            <div>
+              Email: {{ marsh.email }}
+            </div>
+            <div>
+              Descrição: {{ marsh.descricao }}
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class='btn btn-success  btn-lg opcao' @click='clearMarsh'>REINICIA MARSH</button>
+        </div>
+      </div>
+      <div style='display: none;' id="containerWittel">
+        <div class="writeText">
+          <form action="">
+            <div class="form-group col-md-12">
+              <label for="name" class="col-md-4">Nome: </label>
+              <input autocomplete="off" id='name' type='text' class="col-md-7" v-model="wittel.name">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="matricula" class="col-md-4">Matricula: </label>
+              <input autocomplete="off" id='matricula' type='text' class="col-md-7" v-model="wittel.matricula">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contato" class="col-md-4">Contato: </label>
+              <input autocomplete="off" id='contato' type='text' class="col-md-7" v-model="wittel.contato">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="operacao" class="col-md-4">Operação: </label>
+              <input autocomplete="off" id='operacao' type='text' class="col-md-7" v-model="wittel.operacao">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="site" class="col-md-4">Site: </label>
+              <input autocomplete="off" id='site' type='text' class="col-md-7" v-model="wittel.site">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="andar" class="col-md-4">Andar: </label>
+              <input autocomplete="off" id='andar' type='text' class="col-md-7" v-model="wittel.andar">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="maquinas" class="col-md-4">Maquinas: </label>
+              <input autocomplete="off" id='maquinas' type='text' class="col-md-7" v-model="wittel.maquinas">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="horario" class="col-md-4">Horario: </label>
+              <input autocomplete="off" id='horario' type='text' class="col-md-7" v-model="wittel.horario">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="ip" class="col-md-4">IP: </label>
+              <input autocomplete="off" id='ip' type='text' class="col-md-7" v-model="wittel.ip">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="ipTwo" class="col-md-4">IP: </label>
+              <input autocomplete="off" id='ipTwo' type='text' class="col-md-7" v-model="wittel.ipTwo">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="email" class="col-md-4">E-mail: </label>
+              <input autocomplete="off" id='email' type='text' class="col-md-7" v-model="wittel.email">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="ferramenta" class="col-md-4">Ferramenta: </label>
+              <input autocomplete="off" id='ferramenta' type='text' class="col-md-7" v-model="wittel.ferramenta">
+            </div>
+
+            <div class="form-group shadow-textarea col-md-12">
+              <label for="exampleFormControlTextarea6" class="col-md-6">Descrição: </label>
+              <textarea class="form-control z-depth-1 col-md-11" v-model="wittel.descricao"
+                id="exampleFormControlTextarea6" rows="3">
+          </textarea>
+            </div>
+          </form>
+          <div id="result">
+            <div style='text-align: center;font-size: 0.8rem;'>
+              * ENCAMINHAR E-MAIL PARA WITTEL * <br>
+              * COM EVIDENCIA * <br>
+              OBS: Após enviar, verificar o e-mail ver se chegou o numero de chamado aberto
+              por eles para anexar no chamado e escalonar.
+              <p>
+                Enviar para: <br> wittel@service-now.com
+              </p>
+              <p>
+                Em copia colocar <br> commandcenter.wittel@wittel.com
+                <br>
+                suportewfm@wittel.com
+                <br>
+                suporte_wittel_verint@wittel.com
+                <br>
+                servicedesk@neobpo.com.br
+                <br>
+                gco@neobpo.com.br
+              </p>
+            </div>
+            <div>
+              Nome: {{ wittel.name }}
+            </div>
+            <div>
+              Matricula NEO: {{ wittel.matricula }}
+            </div>
+            <div>
+              Contato: {{ wittel.contato }}
+            </div>
+            <div>
+              Operacao: {{ wittel.operacao }}
+            </div>
+            <div>
+              Site: {{ wittel.site }}
+            </div>
+            <div>
+              Andar: {{ wittel.andar }}
+            </div>
+            <div>
+              Maquinas: {{ wittel.maquinas }}
+            </div>
+            <div>
+              horario: {{ wittel.horario }}
+            </div>
+            <div>
+              IP: {{ wittel.ip }}
+            </div>
+            <div>
+              IP: {{ wittel.ipTwo }}
+            </div>
+            <div>
+              Email: {{ wittel.email }}
+            </div>
+            <div>
+              Ferramenta: {{ wittel.ferramenta }}
+            </div>
+            <div>
+              Descrição: {{ wittel.descricao }}
+            </div>
+          </div>
+        </div>
+        <div class='reiniciar'>
+          <button class='btn btn-success btn-lg opcao' @click='clearWittel'>REINICIA WITTEL</button>
+        </div>
+      </div>
+      <div style='display: none;' id="containerRAMAL">
+        <div class="writeText">
+          <form action="">
+            <div class="form-group col-md-12">
+              <label for="name" class="col-md-4">Nome: </label>
+              <input autocomplete="off" id='name' type='text' class="col-md-7" v-model="ramal.name">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="matricula" class="col-md-4">Matricula: </label>
+              <input autocomplete="off" id='matricula' type='text' class="col-md-7" v-model="ramal.matricula">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contato" class="col-md-4">Contato: </label>
+              <input autocomplete="off" id='contato' type='text' class="col-md-7" v-model="ramal.contato">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contato" class="col-md-4">IP: </label>
+              <input autocomplete="off" id='contato' type='text' class="col-md-7" v-model="ramal.ip">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="operacao" class="col-md-4">Operação: </label>
+              <input autocomplete="off" id='operacao' type='text' class="col-md-7" v-model="ramal.operacao">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="email" class="col-md-4">Ramal: </label>
+              <input autocomplete="off" id='email' type='text' class="col-md-7" v-model="ramal.ramal">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="cargo" class="col-md-4">ID: </label>
+              <input autocomplete="off" id='cargo' type='text' class="col-md-7" v-model="ramal.id">
+            </div>
+            <div class="form-group col-md-12" style='text-align: center;'>
+              Espelho
+            </div>
+            <div class="form-group col-md-12">
+              <label for="email" class="col-md-4">Ramal: </label>
+              <input autocomplete="off" id='email' type='text' class="col-md-7" v-model="ramal.ramalEs">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="cargo" class="col-md-4">ID: </label>
+              <input autocomplete="off" id='cargo' type='text' class="col-md-7" v-model="ramal.idEs">
+            </div>
+            <div class="form-group shadow-textarea col-md-12">
+              <label for="exampleFormControlTextarea6" class="col-md-6">Descrição: </label>
+              <textarea class="form-control z-depth-1 col-md-11" v-model="ramal.descricao"
+                id="exampleFormControlTextarea6" rows="3">
+          </textarea>
+            </div>
+          </form>
+          <div id="result">
+            <div style="text-align: center;">
+              <br>PARA O TELECOM<br><br>
+            </div>
+            <div>
+              Nome: {{ ramal.name }}
+            </div>
+            <div>
+              Matricula: {{ ramal.matricula }}
+            </div>
+            <div>
+              Contato: {{ ramal.contato }}
+            </div>
+            <div>
+              IP: {{ ramal.ip }}
+            </div>
+            <div>
+              Operacao: {{ ramal.operacao }}
+            </div>
+            <div>
+              Ramal: {{ ramal.ramal }}
+            </div>
+            <div>
+              ID: {{ ramal.id }}
+            </div>
+            <div>
+              Espelho
+            </div>
+            <div>
+              Ramal: {{ ramal.ramalEs }}
+            </div>
+            <div>
+              ID: {{ ramal.idEs }}
+            </div>
+            <div>
+              Descrição: {{ ramal.descricao }}
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class='btn btn-success btn-lg opcao' @click='clearRamal'>REINICIA RAMAL</button>
+        </div>
+      </div>
+      <div style='display: none;' id="containerNormal">
+        <div class="writeText">
+          <form action="" method="post">
+            <div class="form-group col-md-12">
+              <label for="name" class="col-md-4">Nome: </label>
+              <input autocomplete="off" id='name' type='text' class="col-md-7" v-model="normal.name">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="matricula" class="col-md-4">Matricula: </label>
+              <input autocomplete="off" type='text' class="col-md-7" id='name' v-model="normal.matricula">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contato" class="col-md-4">Contato: </label>
+              <input autocomplete="off" type='text' class="col-md-7" id='contato' v-model="normal.contato">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="operacao" class="col-md-4">Operação: </label>
+              <input autocomplete="off" id='operacao' type='text' class="col-md-7" v-model="normal.operacao">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="site" class="col-md-4">Site: </label>
+              <input autocomplete="off" id='site' type='text' class="col-md-7" v-model="normal.site">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="andar" class="col-md-4">Andar: </label>
+              <input autocomplete="off" id='andar' type='text' class="col-md-7" v-model="normal.andar">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="ip" class="col-md-4">IP: </label>
+              <input autocomplete="off" id='ip' type='text' class="col-md-7" v-model="normal.ip">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="horario" class="col-md-4">horario: </label>
+              <input autocomplete="off" id='horario' type='text' class="col-md-7" v-model="normal.horario">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="ferramenta" class="col-md-4">Ferramenta: </label>
+              <input autocomplete="off" id='ferramenta' type='text' class="col-md-7" v-model="normal.ferramenta">
+            </div>
+            <div class="form-group shadow-textarea col-md-12">
+              <label for="exampleFormControlTextarea6" class="col-md-6">Descrição: </label>
+              <textarea class="form-control z-depth-1 col-md-11" v-model="normal.descricao"
+                id="exampleFormControlTextarea6" rows="3">
+          </textarea>
+            </div>
+
+          </form>
+          <div id="result">
+            <div>
+              Nome: {{ normal.name }}
+            </div>
+            <div>
+              Matricula: {{ normal.matricula }}
+            </div>
+            <div>
+              Contato: {{ normal.contato }}
+            </div>
+            <div>
+              Operacao: {{ normal.operacao }}
+            </div>
+            <div>
+              Site: {{ normal.site }}
+            </div>
+            <div>
+              Andar: {{ normal.andar }}
+            </div>
+            <div>
+              IP: {{ normal.ip }}
+            </div>
+            <div>
+              Ferramenta: {{ normal.ferramenta }}
+            </div>
+            <div>
+              Horario: {{ normal.horario }}
+            </div>
+            <div>
+              Descrição: {{ normal.descricao }}
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class='btn btn-success btn-lg opcao' @click='clearNormal'>REINICIA BASICO</button>
+        </div>
+
+      </div>
+      <div id="containerCRISE">
+        <div class="writeText">
+          <form action="" method="post">
+            <div class="form-group col-md-12">
+              <label for="name" class="col-md-4">Nome: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" id='name' v-model="crise.name">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="matricula" class="col-md-4">Matricula: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.matricula">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="operacao" class="col-md-4">Operação: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.operacao">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="site" class="col-md-4">Site: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.site">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="andar" class="col-md-4">Andar: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.andar">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="email" class="col-md-4">Email: </label>
+              <input autocomplete="off" autocomplete="off" type='email' class="col-md-7" v-model="crise.email">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="maquinas" class="col-md-4">Maquinas: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.maquinas">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="maquinas" class="col-md-4">IP: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.ipOne">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="maquinas" class="col-md-4">IP: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.ipTwo">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="horario" class="col-md-4">Horario: </label>
+              <input autocomplete="off" autocomplete="off" type='datetime' class="col-md-7" v-model="crise.horario">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contato" class="col-md-4">Contato: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.contato">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="contatoDois" class="col-md-4">Contato: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.contatoDois">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="ferramenta" class="col-md-4">Ferramenta: </label>
+              <input autocomplete="off" autocomplete="off" type='text' class="col-md-7" v-model="crise.ferramenta">
+            </div>
+            <div class="form-group shadow-textarea col-md-12">
+              <label for="exampleFormControlTextarea6" class="col-md-6">Descrição: </label>
+              <textarea class="form-control z-depth-1 col-md-11" v-model="crise.descricao"
+                id="exampleFormControlTextarea6" rows="3">
+          </textarea>
+            </div>
+          </form>
+          <div id="result">
+            <div>
+              Nome: {{ crise.name }}
+            </div>
+            <div>
+              Matricula: {{ crise.matricula }}
+            </div>
+            <div>
+              Operação: {{ crise.operacao }}
+            </div>
+            <div>
+              Site: {{ crise.site }}
+            </div>
+            <div>
+              Andar: {{ crise.andar }}
+            </div>
+            <div>
+              E-mail: {{ crise.email }}
+            </div>
+            <div>
+              Maquinas: {{ crise.maquinas }}
+            </div>
+            <div>
+              IP: {{ crise.ipOne }}
+            </div>
+            <div>
+              IP: {{ crise.ipTwo }}
+            </div>
+            <div>
+              Horario: {{ crise.horario }}
+            </div>
+            <div>
+              Contato: {{ crise.contato }}
+            </div>
+            <div>
+              Contato: {{ crise.contatoDois }}
+            </div>
+            <div>
+              Ferramenta: {{ crise.ferramenta }}
+            </div>
+            <div>
+              Descrição: {{ crise.descricao }}
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class='btn btn-danger btn-lg opcao' @click='clearCrise'>REINICIA CRISE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
